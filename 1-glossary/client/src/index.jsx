@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import Glossaries from './glossaries.jsx';
 import Add from './add.jsx';
 import axios from "axios";
+import Glossary from "./glossary.jsx";
 
 var sampledata= [
   {word_ID:1,

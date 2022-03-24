@@ -17,7 +17,7 @@ class Add extends React.Component {
     this.setState({
       newword: { keyword: newkeyword, meaning: this.state.newword.meaning },
     });
-    console.log("under handleChangename>>>", this.state.newword);
+   // console.log("under handleChangename>>>", this.state.newword);
   }
 
   handleChangeMeaning(val) {
@@ -30,7 +30,7 @@ class Add extends React.Component {
 
   handleSubmit(val) {
     val.preventDefault();
-    console.log("add handle submit");
+    //console.log("add handle submit");
     axios
       .post("/glossories", this.state.newword)
       .then((res) => {

@@ -12,6 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
+
 app.post('/glossories',function(req,res){
 console.log(req.body)
 db.save(req.body)
@@ -27,10 +28,25 @@ db.retrieveall((err,result)=>{
         res.send("err")
     } else {
         res.status(200).send(result)
-        console.log("result>>>",result)
+     //   console.log("result>>>",result)
     }
     
 })
+})
+
+app.delete('/glossories',(req,res)=>{
+var keywordtodelte=req.body
+console.log("req.body.data>>>>",req.body)
+db.deleteGlossary(keywordtodelte,(err,result)=>{
+    if (err){
+        throw (err)
+    } else{
+        res.status(200).send()
+    }
+})
+
+
+
 })
 //app.get 
 //retrive the info from db
