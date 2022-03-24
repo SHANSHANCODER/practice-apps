@@ -1,11 +1,42 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const { callbackify } = require("util");
+const db=require ("./db.js")
+const bodyParser = require("body-parser");
+
 
 const app = express();
-
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true }));
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.post('/glossories',function(req,res){
+console.log(req.body)
+db.save(req.body)
+res.status(200).send()
+})
+//app.post
+//store the information to db
+console.log("123");
+
+app.get('/glossories',(req,res)=>{
+db.retrieveall((err,result)=>{
+    if (err){
+        res.send("err")
+    } else {
+        res.status(200).send(result)
+        console.log("result>>>",result)
+    }
+    
+})
+})
+//app.get 
+//retrive the info from db
+
+//app.delete
+//delete info from db
 
 /**** 
  * 
@@ -14,6 +45,8 @@ app.use(express.static(path.join(__dirname, "../client/dist")));
  *
  * 
  */
+
+console.log("abd");
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
