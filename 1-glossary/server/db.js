@@ -72,6 +72,17 @@ let deleteGlossary = (word,callback)=>{
   })
 }
 
+// let updateGlossary = (word, callback)=> {
+//   Glos.findByIdAndUpdate(word._id,word.update, function(err, result){
+//     if(err){
+//         callback(err)
+//     }
+//     else{
+//         callback(null,result)
+//     }
+
+// }
+
 
 
 module.exports.save = save;

@@ -24,7 +24,7 @@ class Glossaries extends React.Component{
         return (
         <div>
              {this.props.words.map((word)=>(
-                <Glossary key={word.keyword} 
+                <Glossary key={word._id} 
                 word={word} />))}  
         </div>
         )

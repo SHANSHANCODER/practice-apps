@@ -17,7 +17,7 @@ class Add extends React.Component {
     this.setState({
       newword: { keyword: newkeyword, meaning: this.state.newword.meaning },
     });
-   // console.log("under handleChangename>>>", this.state.newword);
+    // console.log("under handleChangename>>>", this.state.newword);
   }
 
   handleChangeMeaning(val) {
@@ -35,15 +35,15 @@ class Add extends React.Component {
       .post("/glossories", this.state.newword)
       .then((res) => {
         console.log(res.data);
+      this.props.updatewords();
       })
       .catch(function (err) {
         console.log(err);
       });
-
+   
     this.setState({
-      newword: { keyword: "", meaning: "" }
+      newword: { keyword: "", meaning: "" },
     });
-  
   }
 
   render() {
@@ -58,7 +58,8 @@ class Add extends React.Component {
               onChange={this.handleChangeName}
             />
           </lable>
-          <input className="meaninginput"
+          <input
+            className="meaninginput"
             type="text"
             name="Newword Meaning"
             placeholder="Newword Meaning"

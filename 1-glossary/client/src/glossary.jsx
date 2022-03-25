@@ -9,27 +9,42 @@ class Glossary extends React.Component {
       meaning: this.props.word.meaning,
     };
     this.handleDelete = this.handleDelete.bind(this);
+    this.handleChangeMeaning = this.handleChangeMeaning.bind(this);
+    this.handleChangeWord = this.handleChangeWord.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChangeWord(val) {
-    //console.log("word changed>>>>",val.target.value)
+    console.log("word changed>>>>",val.target.value)
     var updatedWord = val.target.value;
-    //set state
+    this.setState({ word: updatedWord });
   }
 
   handleChangeMeaning(val) {
-    //console.log("meaningchanged>>>>>",val.target.value)
+    console.log("meaningchanged>>>>>",val.target.value)
     var updatedwordMeaning = val.target.value;
-    //set state
+    this.setState({ meaning: updatedwordMeaning });
   }
   handleSubmit(val) {
+    var keywordV = this.state.word;
+    var editedword = {};
+    //updatedword={
+//_id:
+//update:{editedword}
+    //}
+    editedword[keywordV] = this.state.meaning;
+
+    console.log("editedword>>>>>",editedword);
+    // axios
+    // .put("/glossories",updatedword )
+    
     // axios request to change the word
     //response
   }
   handleDelete() {
     // console.log("delete got clicked on ",this.props.word.keyword)
-    var deleteworddata ={data: { keyword: this.props.word.keyword }};
-   // console.log("deletewordata>>>>",deleteworddata);
+    var deleteworddata = { data: { keyword: this.props.word.keyword } };
+    // console.log("deletewordata>>>>",deleteworddata);
     axios
       .delete("/glossories", deleteworddata)
       .then((res) => {
@@ -49,18 +64,17 @@ class Glossary extends React.Component {
             <lable>Word:</lable>
             <input
               type="text"
-              value={this.props.word.keyword}
+              value={this.state.word}
               onChange={this.handleChangeWord}
             />
-            <button onClick={this.handleDelete}>delete</button>
             <lable>Meaning:</lable>
             <input
               type="text"
-              value={this.props.word.meaning}
+              value={this.state.meaning}
               onChange={this.handleChangeMeaning}
             />
             <input type="submit" value="edit" />
-            <input type="submit" value="delete this word" />
+            <input type="submit" value="delete this word" onClick={this.handleDelete}/>
           </div>
         </form>
       </>
