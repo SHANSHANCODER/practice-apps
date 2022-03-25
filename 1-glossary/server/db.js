@@ -72,22 +72,25 @@ let deleteGlossary = (word,callback)=>{
   })
 }
 
-// let updateGlossary = (word, callback)=> {
-//   Glos.findByIdAndUpdate(word._id,word.update, function(err, result){
-//     if(err){
-//         callback(err)
-//     }
-//     else{
-//         callback(null,result)
-//     }
+let updateGlossary = (word, callback)=> {
+  Glos.findByIdAndUpdate(word._id,word.update, function(err, result){
+    if(err){
+        callback(err)
+    }
+    else{
+        callback(null,result)
+    }
 
-// }
+})
+}
 
+//Glos.findByIdAndUpdate('623d119577f011727cfd6a07',{keyword:"testingsame111",meaning:"testingsame222"},console.log)
 
 
 module.exports.save = save;
 module.exports.retrieveall = retrieveall;
 module.exports.deleteGlossary=deleteGlossary;
+module.exports.updateGlossary=updateGlossary;
 
 // 1. Use mongoose to establish a connection to MongoDB
 // 2. Set up any schema and models needed by the app

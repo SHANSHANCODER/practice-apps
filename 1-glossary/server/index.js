@@ -38,7 +38,7 @@ app.get("/glossories", (req, res) => {
 
 app.delete("/glossories", (req, res) => {
   var keywordtodelte = req.body;
-  console.log("req.body.data>>>>", req.body);
+  // console.log("req.body.data>>>>", req.body);
   db.deleteGlossary(keywordtodelte, (err, result) => {
     if (err) {
       throw err;
@@ -48,6 +48,17 @@ app.delete("/glossories", (req, res) => {
   });
 });
 
+app.put("/glossories", (req, res) => {
+  var keywordtoupdate = req.body;
+  db.updateGlossary(keywordtoupdate, (err, result) => {
+    if (err) {
+      res.send("err");
+    } else {
+      res.status(200).send(result);
+    }
+  });
+  //console.log(req.body)
+});
 //app.put("/glossories".(req,res)=> {
 //update the key and the meaning to the same _id data entry
 //})
@@ -64,8 +75,6 @@ app.delete("/glossories", (req, res) => {
  *
  *
  */
-
-console.log("abd");
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);
