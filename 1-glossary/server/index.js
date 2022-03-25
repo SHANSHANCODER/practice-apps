@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Serves up all static and generated assets in ../client/dist.
 app.use(express.static(path.join(__dirname, "../client/dist")));
 
+//---------------------> handle adding new entry
 app.post("/glossories", function (req, res) {
   console.log(req.body);
   db.save(req.body, (err, result) => {
@@ -23,9 +24,10 @@ app.post("/glossories", function (req, res) {
 });
 //app.post
 //store the information to db
-console.log("123");
 
+//-----------------------> handle retriveing all entries from db
 app.get("/glossories", (req, res) => {
+    console.log("get got invoked")
   db.retrieveall((err, result) => {
     if (err) {
       res.send("err");
@@ -35,7 +37,7 @@ app.get("/glossories", (req, res) => {
     }
   });
 });
-
+//---------------------> handle deleting selected word
 app.delete("/glossories", (req, res) => {
   var keywordtodelte = req.body;
   // console.log("req.body.data>>>>", req.body);
@@ -47,7 +49,7 @@ app.delete("/glossories", (req, res) => {
     }
   });
 });
-
+//-----------------> handle updating existing word
 app.put("/glossories", (req, res) => {
   var keywordtoupdate = req.body;
   db.updateGlossary(keywordtoupdate, (err, result) => {
@@ -59,6 +61,19 @@ app.put("/glossories", (req, res) => {
   });
   //console.log(req.body)
 });
+//---------------------> handle search keyword from db
+app.get("/glossories/search", (req, res) => {
+  console.log("req.query>>>>>>",req.query.searchword);
+  db.searchGlossary(req.query.searchword, (err, result) => {
+    if (err) {
+      res.send("err");
+    } else {
+      res.status(200).send(result);
+     // console.log("searchresult from db>>>>>>",result)
+    }
+  });
+});
+
 //app.put("/glossories".(req,res)=> {
 //update the key and the meaning to the same _id data entry
 //})

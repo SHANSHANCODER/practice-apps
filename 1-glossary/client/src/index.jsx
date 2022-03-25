@@ -4,6 +4,7 @@ import Glossaries from "./glossaries.jsx";
 import Add from "./add.jsx";
 import axios from "axios";
 import Glossary from "./glossary.jsx";
+import Search from "./search.jsx";
 
 var sampledata = [
   {
@@ -31,25 +32,28 @@ class App extends React.Component {
     this.state = {
       data: [],
     };
-    this.updatewords=this.updatewords.bind(this)
+    this.updatewords = this.updatewords.bind(this);
+    this.updatesearch=this.updatesearch.bind(this)
   }
 
   updatewords() {
-    console.log("updatewords is envoked")
+    console.log("updatewords is envoked");
     axios
-    .get("/glossories")
-    .then((res) => {
-      console.log(res.data);
-       this.setState({ data: res.data });
-     // this.updatewords(data)
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .get("/glossories")
+      .then((res) => {
+        console.log(res.data);
+        this.setState({ data: res.data });
+        // this.updatewords(data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
-
+  updatesearch(searchdata) {
+    this.setState({data: searchdata})
+  }
   componentDidMount() {
-    this.updatewords()
+    this.updatewords();
     console.log("mounted");
   }
 
@@ -58,6 +62,7 @@ class App extends React.Component {
     return (
       <div>
         <h1>Glossary List </h1>
+        <Search updatesearch={this.updatesearch} />
         <Glossaries words={this.state.data} />
         <br></br>
         <Add updatewords={this.updatewords} />

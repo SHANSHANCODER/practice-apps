@@ -35,12 +35,12 @@ class Add extends React.Component {
       .post("/glossories", this.state.newword)
       .then((res) => {
         console.log(res.data);
-      this.props.updatewords();
+        this.props.updatewords();
       })
       .catch(function (err) {
-        console.log(err);
+        console.log("err");
       });
-   
+
     this.setState({
       newword: { keyword: "", meaning: "" },
     });

@@ -83,6 +83,17 @@ let updateGlossary = (word, callback)=> {
 
 })
 }
+let searchGlossary =(keyword,callback)=>{
+  var searchterm=[{keyword:{$regex:keyword,$options:'i'}},{meaning:{$regex:keyword,$options:'i'}}]
+Glos.find().or(searchterm)
+.then((result)=>{
+ // console.log("searchterm result>>>>>>",result)
+    callback(null,result)
+}).catch(err=>{
+  console.log('searcherr')
+})
+}
+
 
 //Glos.findByIdAndUpdate('623d119577f011727cfd6a07',{keyword:"testingsame111",meaning:"testingsame222"},console.log)
 
@@ -91,6 +102,7 @@ module.exports.save = save;
 module.exports.retrieveall = retrieveall;
 module.exports.deleteGlossary=deleteGlossary;
 module.exports.updateGlossary=updateGlossary;
+module.exports.searchGlossary=searchGlossary;
 
 // 1. Use mongoose to establish a connection to MongoDB
 // 2. Set up any schema and models needed by the app
