@@ -14,6 +14,7 @@
 
 * {
   margin: 0;
+  background-color:antiquewhite
 }
 
 html,
@@ -58,3 +59,42 @@ main {
   padding: 16px;
   margin: auto;
 }
+.maintitle {
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+color:indianred;
+font-size: 6rem;
+}
+
+.subpage{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color:rosybrown;
+}
+.bottombutton{
+  background-color:brown;
+  color:wheat;
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.submitbutton{
+  background-color: rosybrown;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.formlable{
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: brown;
+  width:min-content
+}
+/* .formlabel {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  text-align: right;
+  width: 400px;
+  line-height: 26px;
+  margin-bottom: 10px;
+  font-size: large;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  background-color: brown;
+} */
