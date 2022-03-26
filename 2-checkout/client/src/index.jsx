@@ -11,10 +11,12 @@ class App extends React.Component {
     super(props);
     this.state = {
       page: "home",
+      data:{}
     };
     this.setPage=this.setPage.bind(this)
     this.sendRequest=this.sendRequest.bind(this)
     this.changePage=this.changePage.bind(this)
+    this.renderData=this.renderData.bind(this)
     // console.log(document.cookie)
   }
   //----------------->
@@ -45,11 +47,17 @@ changePage(){
   })
 }
 
+//------------------>
+//getting data from checkout page and update the dom
+renderData(val){
+  this.setState({data:val})
+  console.log(this.state.data)
+}
   render() {
     if (this.state.page === "home") {
       return (
         <div>
-          <h1 className="maintitle">Check out App</h1>
+          <h1 className="maintitle">Checkout App</h1>
           <br />
           <br />
           <h2 className="subpage">Home Page </h2>
@@ -69,10 +77,13 @@ changePage(){
       sendRequest={this.sendRequest}/>;
     } else if (this.state.page === "F3") {
       return <F3 setPage={this.setPage}
+      renderData={this.renderData}
       sendRequest={this.sendRequest}/>;
     } else if (this.state.page === "checkout") {
       //need to refactor here. The homepage should be in else statement 
-      return <Checkout setPage={this.setPage}/>;
+      return <Checkout setPage={this.setPage} 
+     
+      data={this.state.data}/>;
     }
   }
 }

@@ -87,7 +87,7 @@ app.post("/f1", (req, res) => {
     }
   });
 });
-
+//-------------> second page 
 app.post("/f2", (req, res) => {
   let add1 = req.body.add1;
   let add2 = req.body.add2;
@@ -130,6 +130,56 @@ app.post("/f2", (req, res) => {
     }
   });
 });
+//-------------> thirdpage 
+app.post("/f3", (req, res) => {
+    let card = req.body.card;
+    let expiry = req.body.expiry;
+    let cvv = req.body.cvv;
+    let bzip = req.body.bzip;
+    sessionid = req.session_id;
+    console.log(req.body);
+    let update =
+      "update responses set card=" +
+      '"' +
+      card +
+      '",' +
+      "expiry=" +
+      '"' +
+      expiry +
+      '",cvv=' +
+      '"' +
+      cvv +
+      '",billzip=' +
+      '"' +
+      bzip +
+      '" where session_id=' +
+      '"' +
+      sessionid +
+      '"';
+    db.query(update, (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.status(200).send(result);
+        console.log("user exists already, update user info");
+      }
+    });
+  });
+
+  //-----------> checkoutpage
+  app.get('/checkout',(req,res)=>{
+    sessionid = req.session_id;
+    console.log(sessionid)
+      let search="select * from responses where session_id=" +'"'+sessionid+'"'
+db.query(search,(err,results)=>{
+    if(err){
+        console.log(err);
+    } else {
+        res.status(200).send(results)
+        console.log(results)
+    }
+})
+  })
 // app.post('/:x',(req,res)=>{
 // res.send("x")
 // console.log(req.params)
@@ -142,6 +192,7 @@ app.post("/f2", (req, res) => {
  *
  *
  */
+
 
 app.listen(process.env.PORT);
 console.log(`Listening at http://localhost:${process.env.PORT}`);

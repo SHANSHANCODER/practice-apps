@@ -86,6 +86,9 @@ font-size: 6rem;
   background-color: brown;
   width:min-content
 }
+h2{
+  color:indianred
+}
 /* .formlabel {
   display: flex;
   flex-direction: row;

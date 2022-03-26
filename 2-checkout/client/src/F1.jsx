@@ -69,7 +69,7 @@ class F1 extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="maintitle">Check out App</h1>
+        <h1 className="maintitle">Checkout App</h1>
         <br />
         <br />
         <h2 className="subpage">Basica Personal Inforamtion </h2>
